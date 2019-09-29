@@ -1,0 +1,48 @@
+[package]
+name = "ActorBasedProgramming"
+version = "0.1.0"
+authors = ["Michal Majchrzak <michmajchrzak@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix = "0.7"
+actix-web = "0.7"
+rand = "0.7"
+log = "0.4"
+chrono = "0.4"
+env_logger = "0.6.0"
+
+
+[lib]
+name = "lib"
+path = "src/lib.rs"
+
+# [[bin]]
+# name = "cacherz"
+# path = "src/main.rs"
+
+# The development (default) profile, used for `cargo build`.
+[profile.dev]
+opt-level = 0                 # controls the `--opt-level` the compiler builds with.
+                              # 0-1 is good for debugging. 2 is well-optimized. Max is 3.
+                              # 's' attempts to reduce size, 'z' reduces size even more.
+debug = 2                     # (u32 or bool) Include debug information (debug symbols).
+                              # Equivalent to `-C debuginfo=2` compiler flag.
+debug-assertions = false      # controls whether debug assertions are enabled
+                              # (e.g. debug_assert!() and arithmetic overflow checks)
+rpath = true                  # controls whether compiler should set loader paths.
+                              # If true, passes `-C rpath` flag to the compiler.
+lto = false                   # Link Time Optimization usually reduces size of binaries
+                              # and static libraries. Increases compilation time.
+                              # If true, passes `-C lto` flag to the compiler, and if a
+                              # string is specified like 'thin' then `-C lto=thin` will
+                              # be passed.
+codegen-units = 4             # if > 1 enables parallel code generation which improves
+                              # compile times, but prevents some optimizations.
+                              # Passes `-C codegen-units`.
+panic = 'unwind'              # panic strategy (`-C panic=...`), can also be 'abort'
+incremental = true            # whether or not incremental compilation is enabled
+overflow-checks = false       # use overflow checks for integer arithmetic.
+                              # Passes the `-C overflow-checks=...` flag to the compiler.
